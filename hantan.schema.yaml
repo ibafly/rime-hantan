@@ -1,0 +1,173 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: hantan
+  name: 韓單-母音雙擊法
+  version: "2023.02.14"
+  author:
+    - iba
+  description: |
+    Keyboard Layout
+    Qㅊ /W /Eㅓ /Rㄹ /Tㄷㅌ/Yㅣ /Uㅜ /Iㅔ /Oㅗ /Pㅍ
+      Aㅏ /Sㅅㅆ/Dㄸ /Fㅇ /Gㄲ /Hㅎ /Jㅈㅉ/Kㄱㅋ /Lㄹ 
+        Z  /Xㅐ /Cㅡ /V  /Bㅂㅃ/Nㄴ /Mㅁ
+  dependencies:
+    - luna_pinyin
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 韓文, 西文 ]
+  - name: half_shape
+    states: [ 全角, 半角 ]
+  - name: simplification
+    states: [ 漢字, 汉字 ]
+  - name: ascii_punct
+    reset: 1
+    states: [  。，, ．，]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+    - reverse_lookup_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  alphabet: 'zyxwvutsrqponmlkjihgfedcbaJKXUTSOIGEBAD'
+  delimiter: "'"
+  algebra:
+    # the ORDER is SUPER important! 
+    - abbrev/^([gGndDrmbBsSqjJkKftTpPhz]).+$/$1/
+    #
+    - derive/r/l/
+    - derive/z/j/
+    - derive/^zz/J/ # dd/bb/zz only as a start twin consonant
+    - derive/^bb/B/ # dd/bb/zz only as a start twin consonant 
+    - derive/ss/S/
+    #
+    - xform/yeo/E/
+    - xform/ae/x/
+    - xform/ui/euy/ # cy -> ui, must be put before i <- y
+    - xlit|eic|iyq|
+    - xform/y([aoiux])/\U$1/
+    - derive/O/oo/
+    - derive/U/uu/
+    - derive/A/aa/
+    - derive/X/xx/
+    - derive/I/ii/
+    #
+    - xform/w([iy])/u$1/
+    - xform/oi/oy/
+    - xform/w([ax])/o$1/
+    - xform/wo/ue/
+    #
+    - xform/iu/c/
+    #
+    - derive/E/ee/
+    - xform/io/e/
+    #
+    - derive/(^[aiouexcy])/f$1/
+    - xform/ng$/f/
+    #
+    - xform/t/T/
+    - derive/T/tt/
+    - xform/^dd/D/ # dd/bb/zz only as a start twin consonant
+    - xform/d/t/
+    - derive/D/d/
+    # - derive/k/kk/ seperated to 2 lines below
+    - xform/k/K/
+    - derive/K/kk/
+    - xform/gg/G/
+    - xform/g/k/
+    - derive/G/g/
+    #
+    - derive/^([A-Za-z]+)\d$/$1/
+
+translator:
+  dictionary: hangugeo
+  prism: hantan
+  spelling_hints: 20
+  comment_format:
+    - xform/yeo/E/
+    #
+    - xform/[tk]/\U$1/
+    #
+    - xform/ng$/f/
+    #
+    - xform/([gsd])\1{1}/\U$1/
+    - xform/zz/J/
+    - xform/yo/O/
+    - xform/yu/U/
+    - xform/yae/X/ 
+    - xform/ya(?!=e)/A/
+    - xform/ye/I/
+    #
+    - xform/c/q/
+    - xform/eu/c/
+    #
+    - xform/ui/7/ #ㅢ
+    - xform/wae/6/ #ㅙ
+    - xform/wa(?!=e)/5/ #ㅘ
+    - xform/wo/1/ #ㅝ
+    - xform/we/2/ #ㅞ
+    - xform/wi/3/ #ㅟ
+    - xform/oe/4/ #ㅚ
+    #
+    - xform/i/y/
+    #
+    - xform/ae/x/
+    - xform/e/i/
+    - xform/eo/e/
+    #########
+    - "xlit|1234567zyxutsqponmrlkihgfedcbaJXUTKSOIGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅈㅣㅐㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅔㅎㄱㅇㅓㄷㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
+
+  preedit_format:
+    - xform/([abeijkostx])\1{1}/\U$1/
+    - xform/cy/7/ #ㅢ
+    - xform/ox/6/ #ㅙ
+    - xform/oa/5/ #ㅘ
+    - xform/ue/1/ #ㅝ
+    - xform/ui/2/ #ㅞ
+    - xform/uy/3/ #ㅟ
+    - xform/oy/4/ #ㅚ
+    - "xlit|1234567zyxutsqponmrlkjihgfedcbaJXUTKSOIGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅈㅣㅐㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅈㅔㅎㄲㅇㅓㄸㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
+
+reverse_lookup:
+  dictionary: luna_pinyin
+  prefix: "`"
+  suffix: "'"
+  tips: 〔拼音〕
+  preedit_format:
+  comment_format:
+
+punctuator:
+  import_preset: symbols
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  #import_preset: default
+  patterns:
+    punct: '^/([0-9]0?|[A-Za-z]+)$'
+    reverse_lookup: "`[a-z]*'?$"
+
