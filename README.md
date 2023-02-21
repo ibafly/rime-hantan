@@ -14,9 +14,9 @@ A [Rime](https://rime.im) input schema for Korean.
 
 ## Keyboard Layout
 ```
-    Qㅊ /W /Eㅓ /Rㄹ /Tㄷㅌ/Yㅣ /Uㅜ /Iㅣ /Oㅗ /Pㅍ
-      Aㅏ /Sㅅㅆ/Dㄸ /Fㅇ /Gㄲ /Hㅎ /Jㅈㅉ/Kㄱㅋ /Lㄹ 
-        Zㅔ /Xㅐ /Cㅡ /Vㅣ /Bㅂㅃ/Nㄴ /Mㅁ
+  Qㅊ /W  /Eㅓ /Rㄹ /Tㄷㅌ/Yㅣ /Uㅜ /Iㅣ /Oㅗ /Pㅍ
+    Aㅏ /Sㅅㅆ/Dㄸ /Fㅇ /Gㄲ /Hㅎ /Jㅈㅉ/Kㄱㅋ/Lㄹ 
+      Zㅔ /Xㅐ /Cㅡ /Vㅣ /Bㅂㅃ/Nㄴ /Mㅁ 
 ```
 
 ## Key Features
@@ -25,7 +25,7 @@ A [Rime](https://rime.im) input schema for Korean.
   - eg. type ㅏㅏ(aa) -> ㅑ
 - Double typing a consonant goes to its corresponding tense or pumping version.
   - eg. type ㄷㄷ(tt) -> ㅌ while (d) -> ㄸ
-  - eg. type ㅅㅅ (ss) -> ㅆ
+  - eg. type ㅅㅅ(ss) -> ㅆ
 
 ## Why made this?
 
