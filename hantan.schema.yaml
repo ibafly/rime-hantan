@@ -9,7 +9,7 @@ schema:
   description: |
     Keyboard Layout
     Qㅊ /W /Eㅓ /Rㄹ /Tㄷㅌ/Yㅣ /Uㅜ /Iㅣ /Oㅗ /Pㅍ
-      Aㅏ /Sㅅㅆ/Dㄸ /Fㅇ /Gㄲ /Hㅎ /Jㅈㅉ/Kㄱㅋ /Lㄹ 
+      Aㅏ /Sㅅㅆ/Dㄸ /Fㅇ /Gㄲ /Hㅎ /Jㅈㅉ/Kㄱㅋ/Lㄹ 
         Zㅔ /Xㅐ /Cㅡ /Vㅣ /Bㅂㅃ/Nㄴ /Mㅁ
   dependencies:
     - luna_pinyin
@@ -135,11 +135,12 @@ translator:
     #
     - xform/i/y/
     #
+    - xform/z/j/
     - xform/ae/x/
     - xform/e/z/
     - xform/eo/e/
     #########
-    - "xlit|1234567zyxutsqponmrlkihgfedcbaJXUTKSOZGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅔㅣㅐㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅣㅎㄱㅇㅓㄷㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
+    - "xlit|1234567zyxutsqponmrlkjihgfedcbaJXUTKSOZGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅔㅣㅐㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅈㅣㅎㄱㅇㅓㄷㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
 
   preedit_format:
     - xform/([abezjkostx])\1{1}/\U$1/
