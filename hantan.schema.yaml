@@ -1,17 +1,16 @@
 # Rime schema
 # encoding: utf-8
-
 schema:
   schema_id: hantan
-  name: 韓單-母音雙擊法
-  version: "2023.02.14"
+  name: 韓단-單母音雙擊法
+  version: "2023.02.21"
   author:
     - iba
   description: |
     Keyboard Layout
-    Qㅊ /W /Eㅓ /Rㄹ /Tㄷㅌ/Yㅣ /Uㅜ /Iㅔ /Oㅗ /Pㅍ
+    Qㅊ /W /Eㅓ /Rㄹ /Tㄷㅌ/Yㅣ /Uㅜ /Iㅣ /Oㅗ /Pㅍ
       Aㅏ /Sㅅㅆ/Dㄸ /Fㅇ /Gㄲ /Hㅎ /Jㅈㅉ/Kㄱㅋ /Lㄹ 
-        Z  /Xㅐ /Cㅡ /V  /Bㅂㅃ/Nㄴ /Mㅁ
+        Zㅔ /Xㅐ /Cㅡ /Vㅣ /Bㅂㅃ/Nㄴ /Mㅁ
   dependencies:
     - luna_pinyin
 
@@ -52,7 +51,7 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: 'zyxwvutsrqponmlkjihgfedcbaJKXUTSOIGEBAD'
+  alphabet: 'zyxwvutsrqponmlkjihgfedcbaJKXUTSOZGEBAD'
   delimiter: "'"
   algebra:
     # the ORDER is SUPER important! 
@@ -66,26 +65,28 @@ speller:
     #
     - xform/yeo/E/
     - xform/ae/x/
-    - xform/ui/euy/ # cy -> ui, must be put before i <- y
-    - xlit|eic|iyq|
-    - xform/y([aoiux])/\U$1/
+    - xform/ui/eui/ # must be put before i <- y
+    - xlit|ec|zq|
+    - xform/y([aozux])/\U$1/
     - derive/O/oo/
     - derive/U/uu/
     - derive/A/aa/
     - derive/X/xx/
-    - derive/I/ii/
+    - derive/Z/zz/
     #
-    - xform/w([iy])/u$1/
-    - xform/oi/oy/
+    - xform/w([zi])/u$1/
+    - xform/oz/oi/
+    - derive/i/y/
+    - derive/i/v/
     - xform/w([ax])/o$1/
     - xform/wo/ue/
     #
-    - xform/iu/c/
+    - xform/zu/c/
     #
     - derive/E/ee/
-    - xform/io/e/
+    - xform/zo/e/
     #
-    - derive/(^[aiouexcy])/f$1/
+    - derive/(^[azouexciyv])/f$1/
     - xform/ng$/f/
     #
     - xform/t/T/
@@ -119,7 +120,7 @@ translator:
     - xform/yu/U/
     - xform/yae/X/ 
     - xform/ya(?!=e)/A/
-    - xform/ye/I/
+    - xform/ye/Z/
     #
     - xform/c/q/
     - xform/eu/c/
@@ -135,21 +136,23 @@ translator:
     - xform/i/y/
     #
     - xform/ae/x/
-    - xform/e/i/
+    - xform/e/z/
     - xform/eo/e/
     #########
-    - "xlit|1234567zyxutsqponmrlkihgfedcbaJXUTKSOIGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅈㅣㅐㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅔㅎㄱㅇㅓㄷㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
+    - "xlit|1234567zyxutsqponmrlkihgfedcbaJXUTKSOZGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅔㅣㅐㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅣㅎㄱㅇㅓㄷㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
 
   preedit_format:
-    - xform/([abeijkostx])\1{1}/\U$1/
-    - xform/cy/7/ #ㅢ
+    - xform/([abezjkostx])\1{1}/\U$1/
+    - xform/y/i/
+    - xform/v/i/
+    - xform/ci/7/ #ㅢ
     - xform/ox/6/ #ㅙ
     - xform/oa/5/ #ㅘ
     - xform/ue/1/ #ㅝ
-    - xform/ui/2/ #ㅞ
-    - xform/uy/3/ #ㅟ
-    - xform/oy/4/ #ㅚ
-    - "xlit|1234567zyxutsqponmrlkjihgfedcbaJXUTKSOIGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅈㅣㅐㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅈㅔㅎㄲㅇㅓㄸㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
+    - xform/uz/2/ #ㅞ
+    - xform/ui/3/ #ㅟ
+    - xform/oi/4/ #ㅚ
+    - "xlit|1234567zyxwutsqponmrlkjihgfedcbaJXUTKSOZGEDBA|ㅝㅞㅟㅚㅘㅙㅢㅔㅣㅐㅣㅜㄷㅅㅊㅍㅗㄴㅁㄹㄹㄱㅈㅣㅎㄲㅇㅓㄸㅡㅂㅏㅉㅒㅠㅌㅋㅆㅛㅖㄲㅕㄸㅃㅑ|"
 
 reverse_lookup:
   dictionary: luna_pinyin
